@@ -30,7 +30,7 @@ export default function Landing() {
 What you can't say today, time may deliver tomorrow.       </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn btn-primary" style={{color: ' #D8C3A5;', fontSize: 35, padding: '12px 28px' }} onClick={() => nav('/register')}>
+          <button className="btn btn-primary" style={{color: ' #c23ea3;', fontSize: 35, padding: '12px 28px' }} onClick={() => nav('/register')}>
             Write your heart...
           </button>
           {/* <button className="btn btn-ghost" style={{ fontSize: 25, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
