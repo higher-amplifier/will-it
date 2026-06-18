@@ -1,0 +1,63 @@
+import { useNavigate } from 'react-router-dom'
+
+export default function Landing() {
+  const nav = useNavigate()
+
+  return (
+    <div style={{ minHeight: '100vh', background: '#0f0f0f', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
+      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', borderBottom: '1px solid #1e1e1e' }}>
+        <span style={{ fontFamily: 'Playfair Display, serif', fontSize: 22 }}>
+          Will<span style={{ color: '#c84b31' }}>It</span>
+        </span>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button className="btn btn-ghost" style={{ color: '#999', borderColor: '#333' }} onClick={() => nav('/login')}>Sign in</button>
+          <button className="btn btn-primary" onClick={() => nav('/register')}>Get started</button>
+        </div>
+      </nav>
+
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '100px 40px 60px', textAlign: 'center' }}>
+        <div style={{ display: 'inline-block', padding: '5px 14px', borderRadius: 20, background: '#1e1e1e', color: '#888', fontSize: 12, marginBottom: 32, letterSpacing: '0.05em' }}>
+          DIGITAL LEGACY PLATFORM
+        </div>
+
+        <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 1.15, fontWeight: 500, marginBottom: 20 }}>
+          The letter you write<br />
+          <em style={{ color: '#c84b31', fontStyle: 'italic' }}>if you can't be there</em>
+        </h1>
+
+        <p style={{ fontSize: 17, color: '#888', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>
+          Write what matters. Name someone to receive it. If you stop checking in, it gets delivered automatically. No one — not even you — can open it early.
+        </p>
+
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <button className="btn btn-primary" style={{ fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
+            Write your letter
+          </button>
+          <button className="btn btn-ghost" style={{ fontSize: 15, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
+            I have an account
+          </button>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 40px 80px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+          {[
+            { icon: '✍️', title: 'Write', body: 'Compose your letter with passwords, wishes, or anything that matters. Encrypted before it leaves your screen.' },
+            { icon: '🔒', title: 'Lock', body: 'Set a check-in window — 7, 30, or 90 days. As long as you check in, the letter stays locked forever.' },
+            { icon: '📬', title: 'Deliver', body: 'Miss your check-in and we automatically email your letter to the person you chose. No one else can access it.' },
+          ].map(f => (
+            <div key={f.title} style={{ background: '#161616', border: '1px solid #1e1e1e', borderRadius: 14, padding: '24px 20px' }}>
+              <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
+              <div style={{ fontSize: 15, fontWeight: 500, marginBottom: 8, color: '#e0e0e0' }}>{f.title}</div>
+              <div style={{ fontSize: 13, color: '#666', lineHeight: 1.65 }}>{f.body}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ borderTop: '1px solid #1a1a1a', padding: '20px 40px', textAlign: 'center', color: '#444', fontSize: 13 }}>
+        WillIt — Built with care. Your data stays encrypted.
+      </div>
+    </div>
+  )
+}
