@@ -31,7 +31,7 @@ The heart is mortal Love isn't.
 What you can't say today, time may deliver tomorrow.       </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn btn-primary" style={{ fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
+          <button className="btn btn-primary" style={{color: '#c84b31', fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
             Write your letter
           </button>
           <button className="btn btn-ghost" style={{ fontSize: 15, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
@@ -45,7 +45,7 @@ What you can't say today, time may deliver tomorrow.       </p>
           {[
             { icon: '✍️', title: 'Write', body: 'Compose your letter,with passwords, wishes,or anything ' },
             { icon: '🔒', title: 'Lock', body: ' As long as you check in, the letter stays locked forever.' },
-            { icon: '📬', title: 'Deliver', body: 'set time window,miss your check-in ,automatically send email .' },
+            { icon: '📬', title: 'Deliver', body: 'set time window,miss your check-in ,automatically sends email .' },
           ].map(f => (
             <div key={f.title} style={{ background: '#161616', border: '1px solid #1e1e1e', borderRadius: 14, padding: '24px 20px' }}>
               <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
