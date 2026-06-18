@@ -33,9 +33,9 @@ What you can't say today, time may deliver tomorrow.       </p>
           <button className="btn btn-primary" style={{color: '#C76B3A', fontSize: 35, padding: '12px 28px' }} onClick={() => nav('/register')}>
             Write your heart...
           </button>
-          <button className="btn btn-ghost" style={{ fontSize: 25, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
+          {/* <button className="btn btn-ghost" style={{ fontSize: 25, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
             I have an account
-          </button>
+          </button> */}
         </div>
       </div>
 
