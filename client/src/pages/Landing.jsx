@@ -17,7 +17,7 @@ export default function Landing() {
 
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '100px 40px 60px', textAlign: 'center' }}>
         <div style={{ display: 'inline-block', padding: '5px 14px', borderRadius: 20, background: '#1e1e1e', color: '#888', fontSize: 12, marginBottom: 32, letterSpacing: '0.05em' }}>
-          DIGITAL LEGACY PLATFORM
+         Dead Poet's legacy
         </div>
 
         <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 1.15, fontWeight: 500, marginBottom: 20 }}>
@@ -42,9 +42,9 @@ export default function Landing() {
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 40px 80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {[
-            { icon: '✍️', title: 'Write', body: 'Compose your letter with passwords, wishes, or anything that matters. Encrypted before it leaves your screen.' },
-            { icon: '🔒', title: 'Lock', body: 'Set a check-in window — 7, 30, or 90 days. As long as you check in, the letter stays locked forever.' },
-            { icon: '📬', title: 'Deliver', body: 'Miss your check-in and we automatically email your letter to the person you chose. No one else can access it.' },
+            { icon: '✍️', title: 'Write', body: 'Compose your letter with passwords,wishes,or anything ' },
+            { icon: '🔒', title: 'Lock', body: ' As long as you check in, the letter stays locked forever.' },
+            { icon: '📬', title: 'Deliver', body: 'set time window,miss your check-in ,automatically send email .' },
           ].map(f => (
             <div key={f.title} style={{ background: '#161616', border: '1px solid #1e1e1e', borderRadius: 14, padding: '24px 20px' }}>
               <div style={{ fontSize: 28, marginBottom: 12 }}>{f.icon}</div>
