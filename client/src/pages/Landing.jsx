@@ -26,10 +26,9 @@ export default function Landing() {
         </h1>
 
         <p style={{ fontSize: 17, color: '#888', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>
-The body belongs to time. The words belong to eternity.
-Death closes a life. It does not always close a conversation.
-The heart is mortal. Love is not.
-What love cannot say today, time may deliver tomorrow.       </p>
+ Body belongs to time,words to eternity.
+The heart is mortal Love isn't.
+What you can't say today, time may deliver tomorrow.       </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button className="btn btn-primary" style={{ fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
