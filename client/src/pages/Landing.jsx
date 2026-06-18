@@ -26,11 +26,11 @@ export default function Landing() {
         </h1>
 
         <p style={{ fontSize: 17, color: '#888', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>
- Body belongs to time,words to eternity.
-What you can't say today, time may deliver tomorrow.       </p>
+What you can't say today, time may deliver tomorrow.Store encrypted letters, choose a trusted recipient, and automatically deliver them if you stop checking in for a predefined period.
+     </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn btn-primary" style={{color: ' #db43b7;', fontSize: 35, padding: '12px 28px' }} onClick={() => nav('/register')}>
+          <button className="btn btn-primary" style={{color: ' #671821;', fontSize: 35, padding: '12px 28px' }} onClick={() => nav('/register')}>
             Write your heart...
           </button>
           {/* <button className="btn btn-ghost" style={{ fontSize: 25, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
