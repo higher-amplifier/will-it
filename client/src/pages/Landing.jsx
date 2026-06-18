@@ -21,14 +21,15 @@ export default function Landing() {
         </div>
 
         <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: 'clamp(36px, 6vw, 64px)', lineHeight: 1.15, fontWeight: 500, marginBottom: 20 }}>
-          कुछ ख़त समय नहीं, नियति पढ़ती है...<br />
-          <em style={{ color: '#c84b31', fontStyle: 'italic' }}>if you can't be there</em>
+          THE LAST LETTER<br />
+          <em style={{ color: '#c84b31', fontStyle: 'italic' }}>कुछ ख़त समय नहीं, नियति पढ़ती है...</em>
         </h1>
 
         <p style={{ fontSize: 17, color: '#888', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>
-
-कुछ ख़त मंज़िल तक पहुँचने के लिए समय का इंतज़ार करते हैं।
-जो बात आज नहीं कही, शायद वही कल सबसे ज़्यादा ज़रूरी होगी।        </p>
+The body belongs to time. The words belong to eternity.
+Death closes a life. It does not always close a conversation.
+The heart is mortal. Love is not.
+What love cannot say today, time may deliver tomorrow.       </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button className="btn btn-primary" style={{ fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
