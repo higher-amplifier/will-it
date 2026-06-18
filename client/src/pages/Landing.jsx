@@ -42,7 +42,7 @@ export default function Landing() {
       <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 40px 80px' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {[
-            { icon: '✍️', title: 'Write', body: 'Compose your letter with passwords,wishes,or anything ' },
+            { icon: '✍️', title: 'Write', body: 'Compose a letter,with passwords,wishes,or anything ' },
             { icon: '🔒', title: 'Lock', body: ' As long as you check in, the letter stays locked forever.' },
             { icon: '📬', title: 'Deliver', body: 'set time window,miss your check-in ,automatically send email .' },
           ].map(f => (
