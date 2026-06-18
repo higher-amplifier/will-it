@@ -27,14 +27,13 @@ export default function Landing() {
 
         <p style={{ fontSize: 17, color: '#888', lineHeight: 1.7, maxWidth: 480, margin: '0 auto 40px' }}>
  Body belongs to time,words to eternity.
-The heart is mortal Love isn't.
 What you can't say today, time may deliver tomorrow.       </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <button className="btn btn-primary" style={{color: '#c84b31', fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
-            Write your letter
+          <button className="btn btn-primary" style={{color: '#C76B3A', fontSize: 15, padding: '12px 28px' }} onClick={() => nav('/register')}>
+            Write your heart...
           </button>
-          <button className="btn btn-ghost" style={{ fontSize: 15, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
+          <button className="btn btn-ghost" style={{ fontSize: 25, padding: '12px 28px', color: '#666', borderColor: '#333' }} onClick={() => nav('/login')}>
             I have an account
           </button>
         </div>
