@@ -4,10 +4,16 @@
 
 ### *The internet finally has a dead man's switch.*
 
-[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
-[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+<br/>
+
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Google OAuth](https://img.shields.io/badge/Google_OAuth-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![AES-256](https://img.shields.io/badge/AES--256-Encrypted-red?style=for-the-badge&logo=letsencrypt&logoColor=white)
+![Nodemailer](https://img.shields.io/badge/Nodemailer-0F9DCE?style=for-the-badge&logo=gmail&logoColor=white)
 
 </div>
 
@@ -27,48 +33,57 @@ You store messages, passwords, final instructions — encrypted. You check in pe
 
 ---
 
-## 🔐 What People Store
+## 🔐 What people actually store
 
-- Last messages to family, friends, or anyone who matters
-- Account passwords and credentials — so loved ones aren't locked out
-- Legal instructions, insurance details, anything critical
-- Anything you'd want someone to have — but **only** if you can no longer stop it
+- Last messages to people who matter
+- **Account passwords and credentials** — so loved ones aren't locked out of your entire digital life
+- Bank details, insurance info, legal instructions
+- Anything that needs to survive you — but only if you can no longer stop it
 
 ---
 
 ## ⚡ How It Works
 
+<div align="center">
+
 ```
-  [ You ]
-     │
-     ▼
-  Write letters → encrypt with AES-256 → store in DB (ciphertext only)
-  Add nominees  → who gets what
-  Set interval  → 1 month to 20 years
-     │
-     ▼
-  ┌─────────────────────────────────┐
-  │        ARE YOU ALIVE?           │
-  │                                 │
-  │  Checked in?  →  clock resets   │
-  │  Gone dark?   →  cron fires     │
-  │                 letters decrypt  │
-  │                 nominees notified│
-  └─────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│   📝 Write letters, passwords, instructions                     │
+│   👤 Assign each one to a nominee                               │
+│   ⏱️  Set your check-in interval (1 month → 20 years)           │
+│                                                                 │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│              🔁  ARE YOU STILL THERE?                           │
+│                                                                 │
+│   ✅  Checked in?   →   clock resets. nothing happens.          │
+│   ❌  Gone dark?    →   cron fires.                             │
+│                         letters decrypt.                        │
+│                         nominees get the email.                 │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
 ```
+
+</div>
 
 ---
 
-## 🖥️ UI
+## 🖥️ UI Highlights
 
-Built dark, built minimal — nothing cheerful about a dead man's switch.
+The UI is dark and intentional — nothing cheerful about a dead man's switch.
 
-- **Dashboard** — live countdown to your next required check-in, turns red as deadline approaches
-- **One-click check-in** — the only thing standing between your nominees and your letters
-- **Letter editor** — write per nominee, see encryption status in real time
-- **Nominee manager** — add, verify, assign letters
-- **Timer visualizer** — progress bar showing how much of your window remains
-- **Google OAuth** — sign in fast, no friction
+| Screen | What it does |
+|---|---|
+| 🏠 **Dashboard** | Live countdown to next check-in — turns red as deadline approaches |
+| 💓 **Check-in button** | One click. Resets everything. The only thing standing between your nominees and your letters. |
+| ✍️ **Letter editor** | Write per nominee, encryption status shown inline |
+| 🔑 **Vault** | Separate section for passwords & credentials — clearly distinct from letters |
+| 👥 **Nominee manager** | Add people, assign letters, control who gets what |
+| ⏳ **Timer bar** | Visual progress of how much of your window is left |
 
 ---
 
@@ -78,10 +93,10 @@ Built dark, built minimal — nothing cheerful about a dead man's switch.
 Frontend      →  React
 Backend       →  Node.js + Express
 Database      →  MongoDB
-Encryption    →  AES-256 (letters encrypted before storage, decrypted only at delivery)
+Encryption    →  AES-256 (encrypted on write, decrypted only at delivery)
 Auth          →  JWT + bcrypt + Google OAuth via Passport.js
 Email         →  Nodemailer
-Scheduler     →  node-cron  ← this is the actual switch. scans every user. pulls the trigger.
+Scheduler     →  node-cron  ← the actual switch. scans every user. pulls the trigger.
 ```
 
 ---
@@ -105,7 +120,7 @@ willit/
     ├── controllers/
     ├── middleware/             # JWT guard on protected routes
     ├── jobs/
-    │   └── switchChecker.js    # ⚡ runs on cron, finds overdue users, fires delivery
+    │   └── switchChecker.js    # runs on cron, finds overdue users, fires delivery
     └── utils/
         ├── encrypt.js          # AES-256 encrypt / decrypt
         └── mailer.js           # nodemailer delivery
@@ -118,28 +133,28 @@ willit/
 ```
 POST   /api/auth/register         register
 POST   /api/auth/login            login
-GET    /api/auth/google           Google OAuth entry
+GET    /api/auth/google           Google OAuth
 
 POST   /api/letters               create letter (encrypted on write)
-GET    /api/letters               fetch all (returns ciphertext + metadata)
+GET    /api/letters               fetch all
 PUT    /api/letters/:id           update
 DELETE /api/letters/:id           delete
 
 POST   /api/nominees              add a nominee
 GET    /api/nominees              list nominees
 
-POST   /api/checkin               💓  I'm alive — resets the clock
-GET    /api/checkin/status        returns time left before switch flips
+POST   /api/checkin               💓 I'm alive — resets the clock
+GET    /api/checkin/status        time left before switch flips
 ```
 
 ---
 
-## 🔒 Security Model
+## 🔒 Security
 
 | Threat | How WillIt handles it |
 |---|---|
 | DB breach | Letters are AES-256 ciphertext — useless without the key |
-| Password leak | bcrypt hashed with salt — not reversible |
-| Session hijack | Short-lived JWTs — stateless, signed |
+| Password leak | bcrypt hashed — not reversible |
+| Session hijack | Short-lived JWTs, stateless and signed |
 | Unauthorized access | JWT middleware on every protected route |
-| Plaintext exposure | Decryption happens only at delivery — never stored or logged in plain |
+| Plaintext exposure | Decryption only at delivery — never stored or logged in plain |
