@@ -1,42 +1,92 @@
-# WillIt 🕯️
+<div align="center">
 
-> A dead man's switch web app that automatically delivers your encrypted letters to nominated people if you stop checking in.
+# 🕯️ WillIt
+
+### *The internet finally has a dead man's switch.*
+
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
+
+</div>
 
 ---
 
-## 💡 The Idea
+## 🧠 The Concept
 
-People have things they'd want someone to know — after they're gone, or if they disappear, or just *in case*. Those things usually stay unsaid.
+A **dead man's switch** is a mechanism that activates when someone *stops* acting — not when they do.
 
-WillIt lets you write letters, nominate recipients, and set a timer. As long as you keep checking in, nothing happens. The moment you stop — your letters are delivered automatically.
+Nuclear facilities use them. Trains use them. Militaries use them.
+
+**WillIt brings that to your digital life.**
+
+You store messages, passwords, final instructions — encrypted. You check in periodically. As long as you check in, nothing happens. The moment you go dark long enough — the switch flips, and everything reaches the right people. Automatically. No human in the loop. No override.
+
+> *It's not about death. It's about control — and making sure the right information survives you.*
 
 ---
 
-## ⚙️ How It Works
+## 🔐 What People Store
 
-1. Sign up and write your letters
-2. Add nominees (who should receive each letter)
-3. Set a check-in interval — from 1 month to 20 years
-4. Check in periodically with one click to reset the timer
-5. If you miss your check-in window, WillIt delivers every letter to its nominee via email
+- Last messages to family, friends, or anyone who matters
+- Account passwords and credentials — so loved ones aren't locked out
+- Legal instructions, insurance details, anything critical
+- Anything you'd want someone to have — but **only** if you can no longer stop it
+
+---
+
+## ⚡ How It Works
+
+```
+  [ You ]
+     │
+     ▼
+  Write letters → encrypt with AES-256 → store in DB (ciphertext only)
+  Add nominees  → who gets what
+  Set interval  → 1 month to 20 years
+     │
+     ▼
+  ┌─────────────────────────────────┐
+  │        ARE YOU ALIVE?           │
+  │                                 │
+  │  Checked in?  →  clock resets   │
+  │  Gone dark?   →  cron fires     │
+  │                 letters decrypt  │
+  │                 nominees notified│
+  └─────────────────────────────────┘
+```
+
+---
+
+## 🖥️ UI
+
+Built dark, built minimal — nothing cheerful about a dead man's switch.
+
+- **Dashboard** — live countdown to your next required check-in, turns red as deadline approaches
+- **One-click check-in** — the only thing standing between your nominees and your letters
+- **Letter editor** — write per nominee, see encryption status in real time
+- **Nominee manager** — add, verify, assign letters
+- **Timer visualizer** — progress bar showing how much of your window remains
+- **Google OAuth** — sign in fast, no friction
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Tech |
-|---|---|
-| Frontend | React |
-| Backend | Node.js + Express |
-| Database | MongoDB |
-| Auth | JWT, bcrypt, Google OAuth (Passport.js) |
-| Encryption | AES-256 |
-| Email | Nodemailer |
-| Scheduling | node-cron |
+```
+Frontend      →  React
+Backend       →  Node.js + Express
+Database      →  MongoDB
+Encryption    →  AES-256 (letters encrypted before storage, decrypted only at delivery)
+Auth          →  JWT + bcrypt + Google OAuth via Passport.js
+Email         →  Nodemailer
+Scheduler     →  node-cron  ← this is the actual switch. scans every user. pulls the trigger.
+```
 
 ---
 
-## 📁 Project Structure
+## 📁 Structure
 
 ```
 willit/
@@ -44,44 +94,52 @@ willit/
 │   └── src/
 │       ├── components/
 │       ├── pages/
-│       ├── context/         # Auth context
+│       ├── context/            # global auth state
 │       └── utils/
 │
-├── server/
-│   ├── config/              # DB + Passport setup
-│   ├── controllers/         # Business logic
-│   ├── middleware/          # JWT auth guard
-│   ├── models/
-│   │   ├── User.js
-│   │   ├── Letter.js
-│   │   └── Nominee.js
-│   ├── routes/
-│   ├── jobs/                # node-cron — the switch logic
-│   └── utils/               # AES encryption + mailer
+└── server/
+    ├── models/
+    │   ├── User.js             # stores last check-in timestamp + interval
+    │   ├── Letter.js           # stores AES-encrypted content only
+    │   └── Nominee.js          # recipient info
+    ├── controllers/
+    ├── middleware/             # JWT guard on protected routes
+    ├── jobs/
+    │   └── switchChecker.js    # ⚡ runs on cron, finds overdue users, fires delivery
+    └── utils/
+        ├── encrypt.js          # AES-256 encrypt / decrypt
+        └── mailer.js           # nodemailer delivery
 ```
 
 ---
 
-## 📡 API Routes
+## 🛣️ API
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/auth/register` | Register with email/password |
-| POST | `/api/auth/login` | Login |
-| GET | `/api/auth/google` | Google OAuth login |
-| POST | `/api/letters` | Create a letter |
-| GET | `/api/letters` | Fetch all letters |
-| PUT | `/api/letters/:id` | Edit a letter |
-| DELETE | `/api/letters/:id` | Delete a letter |
-| POST | `/api/nominees` | Add a nominee |
-| POST | `/api/checkin` | Reset the dead man's timer |
-| GET | `/api/checkin/status` | Get current timer status |
+```
+POST   /api/auth/register         register
+POST   /api/auth/login            login
+GET    /api/auth/google           Google OAuth entry
+
+POST   /api/letters               create letter (encrypted on write)
+GET    /api/letters               fetch all (returns ciphertext + metadata)
+PUT    /api/letters/:id           update
+DELETE /api/letters/:id           delete
+
+POST   /api/nominees              add a nominee
+GET    /api/nominees              list nominees
+
+POST   /api/checkin               💓  I'm alive — resets the clock
+GET    /api/checkin/status        returns time left before switch flips
+```
 
 ---
 
-## 🛡️ Security
+## 🔒 Security Model
 
-- Passwords hashed with **bcrypt**
-- Letters encrypted with **AES-256** before storage — decrypted only at delivery
-- **JWT** for session management
-- **Google OAuth** via Passport.js
+| Threat | How WillIt handles it |
+|---|---|
+| DB breach | Letters are AES-256 ciphertext — useless without the key |
+| Password leak | bcrypt hashed with salt — not reversible |
+| Session hijack | Short-lived JWTs — stateless, signed |
+| Unauthorized access | JWT middleware on every protected route |
+| Plaintext exposure | Decryption happens only at delivery — never stored or logged in plain |
